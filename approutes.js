@@ -1,15 +1,19 @@
 'use strict';
 module.exports = function(app) {
-  var todoList = require('../controllers/todoListController');
+	var surveys = require('./controllers/surveyListController');
+	var users = require('./controllers/userListController');
+	var usersurveys = require('./controllers/usersurveyListController');
 
-  // todoList Routes
-  app.route('/surveys')
-    .get(todoList.list_all_tasks)
-    .post(todoList.create_a_task);
+  //  Routes - End points
+	app.route('/surveys')
+	    .get(surveys.list_surveys)
+	    .post(surveys.create_survey);
+		
+	app.route('/users')
+	    .get(users.list_users)
+	    .post(users.create_user);
 
-
-  app.route('/surveys/:surveyId')
-    .get(todoList.read_a_task)
-    .put(todoList.update_a_task)
-    .delete(todoList.delete_a_task);
+	app.route('/usersurveys/:userId')
+	    .get(usersurveys.read_usersurvey)
+	    .put(usersurveys.update_usersurvey);
 };

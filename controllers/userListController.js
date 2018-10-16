@@ -4,11 +4,11 @@
 var mongoose = require('mongoose'),
   User = mongoose.model('users');
 
-exports.list_all_tasks = function(req, res) {
+exports.list_users = function(req, res) {
   User.find({}, function(err, user) {
     if (err)
       res.send(err);
-    res.json(task);
+    res.json(user);
   });
 };
 
@@ -20,22 +20,22 @@ exports.create_user = function(req, res) {
   new_user.save(function(err, user) {
     if (err)
       res.send(err);
-    res.json(task);
+    res.json(user);
   });
 };
 
 
 exports.read_user = function(req, res) {
-  Task.findById(req.params.userId, function(err, user) {
+  User.findById(req.params.userId, function(err, user) {
     if (err)
       res.send(err);
-    res.json(task);
+    res.json(user);
   });
 };
 
 
 exports.update_user = function(req, res) {
-  Task.findOneAndUpdate({_id: req.params.userId}, req.body, {new: true}, function(err, user) {
+  User.findOneAndUpdate({_id: req.params.userId}, req.body, {new: true}, function(err, user) {
     if (err)
       res.send(err);
     res.json(user);
@@ -44,11 +44,11 @@ exports.update_user = function(req, res) {
 exports.delete_user = function(req, res) {
 
 
-  Task.remove({
+  User.remove({
     _id: req.params.userId
-  }, function(err, task) {
+  }, function(err, user) {
     if (err)
       res.send(err);
-    res.json({ message: 'Task successfully deleted' });
+    res.json({ message: 'User successfully deleted' });
   });
 };

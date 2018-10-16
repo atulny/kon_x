@@ -4,51 +4,51 @@
 var mongoose = require('mongoose'),
   Survey = mongoose.model('surveys');
 
-exports.list_tasks = function(req, res) {
-  Survey.find({}, function(err, task) {
+exports.list_surveys = function(req, res) {
+  Survey.find({}, function(err, survey) {
     if (err)
       res.send(err);
-    res.json(task);
+    res.json(survey);
   });
 };
 
 
 
 
-exports.create_task = function(req, res) {
+exports.create_survey = function(req, res) {
   var new_survey = new Survey(req.body);
-  new_survey.save(function(err, task) {
+  new_survey.save(function(err, survey) {
     if (err)
       res.send(err);
-    res.json(task);
+    res.json(survey);
   });
 };
 
 
-exports.read_task = function(req, res) {
-  Survey.findById(req.params.surveyId, function(err, task) {
+exports.read_survey = function(req, res) {
+  Survey.findById(req.params.surveyId, function(err, survey) {
     if (err)
       res.send(err);
-    res.json(task);
+    res.json(survey);
   });
 };
 
 
-exports.update_task = function(req, res) {
-  Survey.findOneAndUpdate({_id: req.params.surveyId}, req.body, {new: true}, function(err, task) {
+exports.update_survey = function(req, res) {
+  Survey.findOneAndUpdate({_id: req.params.surveyId}, req.body, {new: true}, function(err, survey) {
     if (err)
       res.send(err);
-    res.json(task);
+    res.json(survey);
   });
 };
-exports.delete_task = function(req, res) {
+exports.delete_survey = function(req, res) {
 
 
-  Task.remove({
+  Survey.remove({
     _id: req.params.surveyId
-  }, function(err, task) {
+  }, function(err, survey) {
     if (err)
       res.send(err);
-    res.json({ message: 'Task successfully deleted' });
+    res.json({ message: 'survey successfully deleted' });
   });
 };

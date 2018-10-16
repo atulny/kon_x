@@ -4,10 +4,10 @@ var Schema = mongoose.Schema;
 
 var SurveyAnswesrSchema = new Schema({
       seqno:{
-          type:int
+          type:Number
       },
       answer: {
-        type: int
+        type: Number
       }
 })
 var UserSurveySchema = new Schema({

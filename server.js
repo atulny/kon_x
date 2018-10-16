@@ -5,16 +5,16 @@ var express = require('express'),
   bodyParser = require('body-parser');
 
   //load created models  here
-var User = require('./models/userListModel'), 
-  Survey = require('./models/surveyListModel'),
-  UserSurvey = require('./models/usersurveyListModel');
+var User = require('./models/usermodel'), 
+  Survey = require('./models/surveymodel'),
+  UserSurvey = require('./models/usersurveymodel');
 
 
   
   
 // mongoose instance connection url connection
 mongoose.Promise = global.Promise;
-mongoose.connect('mongodb://localhost/Tododb'); 
+mongoose.connect('mongodb://localhost/sersurvey'); 
 
 
 app.use(bodyParser.urlencoded({ extended: true }));

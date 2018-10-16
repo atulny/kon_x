@@ -3,7 +3,7 @@ var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 var SurveyQuestionAnswesrSchema = new Schema({
       seqno:{
-          type:int
+          type:Number
       },
       answer: {
         type: String,
@@ -12,7 +12,7 @@ var SurveyQuestionAnswesrSchema = new Schema({
 })
 var SurveyQuestionSchema = new Schema({
   seqno:{
-    type:int
+    type:Number
   },
 
  question: {

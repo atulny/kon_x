@@ -2,51 +2,51 @@
 
 
 var mongoose = require('mongoose'),
-  Task = mongoose.model('Tasks');
+  Usersurvey = mongoose.model('usersurveys');
 
-exports.list_all_tasks = function(req, res) {
-  Task.find({}, function(err, task) {
+exports.list_usersurveys = function(req, res) {
+  Usersurvey.find({}, function(err, usersurvey) {
     if (err)
       res.send(err);
-    res.json(task);
+    res.json(usersurvey);
   });
 };
 
 
 
 
-exports.create_a_task = function(req, res) {
-  var new_task = new Task(req.body);
-  new_task.save(function(err, task) {
+exports.create_usersurvey = function(req, res) {
+  var new_usersurvey = new Task(req.body);
+  new_usersurvey.save(function(err, usersurvey) {
     if (err)
       res.send(err);
-    res.json(task);
+    res.json(usersurvey);
   });
 };
 
 
-exports.read_a_task = function(req, res) {
-  Task.findById(req.params.taskId, function(err, task) {
+exports.read_usersurvey = function(req, res) {
+  Task.findById(req.params.usersurveyId, function(err, usersurvey) {
     if (err)
       res.send(err);
-    res.json(task);
+    res.json(usersurvey);
   });
 };
 
 
-exports.update_a_task = function(req, res) {
-  Task.findOneAndUpdate({_id: req.params.taskId}, req.body, {new: true}, function(err, task) {
+exports.update_usersurvey = function(req, res) {
+  Task.findOneAndUpdate({_id: req.params.usersurveyId}, req.body, {new: true}, function(err, usersurvey) {
     if (err)
       res.send(err);
-    res.json(task);
+    res.json(usersurvey);
   });
 };
-exports.delete_a_task = function(req, res) {
+exports.delete_usersurvey = function(req, res) {
 
 
   Task.remove({
-    _id: req.params.taskId
-  }, function(err, task) {
+    _id: req.params.usersurveyId
+  }, function(err, usersurvey) {
     if (err)
       res.send(err);
     res.json({ message: 'Task successfully deleted' });

@@ -14,7 +14,7 @@ var User = require('./models/usermodel'),
   
 // mongoose instance connection url connection
 mongoose.Promise = global.Promise;
-mongoose.connect('mongodb://localhost/sersurvey'); 
+mongoose.connect('mongodb://localhost/usersurvey'); 
 
 
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -28,5 +28,5 @@ routes(app); //register the route
 app.listen(port);
 
 
-console.log('todo list RESTful API server started on: ' + port);
+console.log('RESTful API server started on: ' + port);
 //https://www.codementor.io/olatundegaruba/nodejs-restful-apis-in-10-minutes-q0sgsfhbd

@@ -13,11 +13,18 @@ var SurveyAnswesrSchema = new Schema({
 var UserSurveySchema = new Schema({
   user_id: {
     type: String,
-    required: 'Enter the ID of the User'
+    required: 'ID of the User'
   },
  survey_id: {
     type: String,
-    required: 'Enter the ID of the User'
+    required: 'ID of the Survey'
+  },
+  status: {
+    type: [{
+      type: String,
+      enum: ['pending', 'submitted']
+    }],
+    default: ['pending']
   },
   submitted_on: {
     type: Date

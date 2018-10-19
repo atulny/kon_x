@@ -2,7 +2,6 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
-
 var UserSchema = new Schema({
   user_id: {
     type: String,
@@ -13,6 +12,6 @@ var UserSchema = new Schema({
     type: String,
    default: "America/New_York"
   }
-});
+});',acde'
 
 module.exports = mongoose.model('users', UserSchema);

@@ -22,31 +22,30 @@ var SurveyQuestionSchema = new Schema({
   answers:[SurveyQuestionAnswesrSchema]
 
 })
+/*
+Mongo does not have support for 'time' type .. only datetime.
 
+we will expect the input time in 'hh:nn am/pm' format and convert to a datetime time with date being the '1970/1/1'
+
+*/
 
 var SurveySchema = new Schema({
   name: {
     type: String,
-    required: 'Enter the name of the schema'
+    required: 'Enter the name of the SurveyS'
   },
   
   launch_time: {
-    type: Date
+    type: Date 
   },
   due_time: {
-    type: Date
+    type: Date 
   },
    frequency: {
-    type: [{
       type: String,
-      enum: ['daily', 'weekly']
-    }],
-    default: ['daily']
-  },
-  created_date: {
-    type: Date,
-    default: Date.now
-  },
+          default: 'daily' // or weekly
+
+  }, 
   questions:[SurveyQuestionSchema]
 });
 

@@ -1,29 +1,28 @@
 {
-
-	"name":"con_x",
-	"description":"Code exercise app",
-	"version":"1.0.0",
-	"main":"server.js",
-	"scripts":{
-		"test":"no test",
-		"start":"nodejs server.js"
-
+	"name": "con_x",
+	"description": "Code exercise app",
+	"version": "1.0.0",
+	"main": "server.js",
+	"scripts": {
+		"test": "no test",
+		"start": "nodejs server.js"
 	},
-	"repository":{
-		"type":"git",
-		"url":""
-
+	"repository": {
+		"type": "git",
+		"url": ""
 	},
-	"author":"Atul Sharma",
-	"license":"",
-	"devDependancies":{
-		"nodemon":"^1"
-
+	"author": "Atul Sharma",
+	"license": "",
+	"devDependancies": {
+		"nodemon": "^1"
 	},
-	"dependancies":{
-		"express":"^4"
+	"dependancies": {
+		"express": "^4"
+	},
+	"dependencies": {
+		"express": "^4.16.4",
+		"moment": "^2.22.2",
+		"moment-timezone": "^0.5.21",
+		"mongoose": "^5.3.4"
 	}
-
-
-
 }

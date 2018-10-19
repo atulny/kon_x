@@ -13,7 +13,9 @@ module.exports = function(app) {
 	    .get(users.list_users)
 	    .post(users.create_user);
 
-	app.route('/usersurveys/:userId')
+	app.route('/usersurveys')
 	    .get(usersurveys.read_usersurvey)
-	    .put(usersurveys.update_usersurvey);
+	   // .put(usersurveys.update_usersurvey);
+	    .post(usersurveys.create_usersurvey);
+
 };

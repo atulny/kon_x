@@ -30,7 +30,7 @@ we will expect the input time in 'hh:nn am/pm' format and convert to a datetime 
 */
 
 var SurveySchema = new Schema({
-  name: {
+  survey_id: {
     type: String,
     required: 'Enter the name of the SurveyS'
   },

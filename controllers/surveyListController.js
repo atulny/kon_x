@@ -28,11 +28,11 @@ exports.create_survey = function(req, res) {
 
     survey_data.questions=JSON.parse(survey_data.questions)
   }
-  if (survey_data.launch_time){
+  if (survey_data.launch_time  && typeof(survey_data.launch_time)=='string'){
     survey_data.launch_time = new Date( "1970/1/1 "+  survey_data.launch_time)
 
   }
-  if (survey_data.due_time){
+  if (survey_data.due_time  && typeof(survey_data.due_time)=='string'){
     survey_data.due_time = new Date( "1970/1/1 "+  survey_data.due_time)
 
   }

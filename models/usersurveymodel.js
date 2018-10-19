@@ -20,14 +20,15 @@ var UserSurveySchema = new Schema({
     required: 'ID of the Survey'
   },
   status: {
-    type: [{
+    type: {
       type: String,
-      enum: ['pending', 'submitted']
-    }],
-    default: ['pending']
+      enum: ['pending', 'submitted'],
+        default: 'pending'
+     } ,
   },
   submitted_on: {
-    type: Date
+    type: Date,
+    default:Date.now
   },
   responses: [SurveyAnswesrSchema]
 });

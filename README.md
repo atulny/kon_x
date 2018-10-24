@@ -7,7 +7,7 @@ clone local
 cd kon_x
 
 ensure mongo db servr is running locally
- and has a collection usersurveys
+ and has a collection usersurvey
  
  
 to start http server

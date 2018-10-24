@@ -1,5 +1,6 @@
 'use strict';
 var mongoose = require('mongoose');
+
 var Schema = mongoose.Schema;
 
 var SurveyAnswesrSchema = new Schema({
@@ -7,28 +8,31 @@ var SurveyAnswesrSchema = new Schema({
           type:Number
       },
       answer: {
-        type: Number
+        type: String
       }
-})
+}) 
 var UserSurveySchema = new Schema({
-  user_id: {
-    type: String,
-    required: 'ID of the User'
-  },
+   
  survey_id: {
     type: String,
     required: 'ID of the Survey'
   },
   status: {
-    type: {
-      type: String,
+       type: String,
       enum: ['pending', 'submitted'],
         default: 'pending'
-     } ,
-  },
+   },
   submitted_on: {
     type: Date,
     default:Date.now
+  },start: {
+    type: Date 
+  },end: {
+    type: Date 
+  },launch_time: {
+    type: Date 
+  },due_time: {
+    type: Date 
   },
   responses: [SurveyAnswesrSchema]
 });

@@ -5,17 +5,10 @@ var mongoose = require('mongoose'),
   User = mongoose.model('users');
 var moment = require('moment-timezone')
 
+const participantduration=7*10 //10 weeks
+ 
 
-
-exports.list_users = function(req, res) {
-  User.find({}, function(err, user) {
-    if (err)
-      res.send(err);
-    res.json(user);
-  });
-};
-
-
+ 
 function validate_timezone(origtimezone){
   var result={timezone:null,error:""}
   try{  
@@ -33,43 +26,28 @@ function validate_timezone(origtimezone){
    
   return result
 }
-
-exports.create_user = function(req, res) {
-  
-  var new_user = new User(req.body);
-   
-  //validate the timezone
+exports.add_user = function(data) {
+   //validate the timezone
   // set the curated timezone
   //   else set an error message and return
-  var tz_obj=validate_timezone(new_user.timezone)
+  var tz_obj=validate_timezone(data.timezone)
   if (tz_obj.error){
     var errors={
         "timezone":tz_obj.error
       }
-      res.send({    "message": "timezone validation failed: timezone: provide valid timezone",
-        errors:errors});
-      new_user.errors=errors
-      res.json(new_user);
-      return
+    
+      return Promise.reject(errors)
   }
-  new_user.timezone=tz_obj.timezone
-  
-  new_user.save(function(err, user) {
-    if (err)
-      res.send(err);
-    res.json(user);
-  });
+  data.timezone=tz_obj.timezone
+  if (!data.date_created){
+    data.date_created=new Date()
+  }
+  data.date_end=new Date(+data.date_created+(participantduration*24*60*60*1000))
+  var new_user = new User(data);
+  return new_user.save( );
 };
 
-
-exports.read_user = function(req, res) {
-  User.findOne({user_id:req.params.userId}, function(err, user) {
-    if (err)
-      res.send(err);
-    res.json(user);
-  });
-};
-
+ 
 /*
 //Not available
 -----------------------------------------------------

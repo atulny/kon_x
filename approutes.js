@@ -1,21 +1,38 @@
 'use strict';
-module.exports = function(app) {
-	var surveys = require('./controllers/surveyListController');
-	var users = require('./controllers/userListController');
-	var usersurveys = require('./controllers/usersurveyListController');
 
+//transport layer using http
+
+
+module.exports = function(app) {
+	var api = require('./api');
+	
   //  Routes - End points
 	app.route('/surveys')
-	    .get(surveys.list_surveys)
-	    .post(surveys.create_survey);
+	    .post(function(req,res){
+	    	api.createSurvey(req).then(
+		      function(user){res.json(user);}
+		    ).catch(function(err){
+		      res.send(err);
+		    });
+	    });
 		
 	app.route('/users')
-	    .get(users.list_users)
-	    .post(users.create_user);
+	    .post(function(req,res){
+	    	api.createParticipant(req).then(
+		      function(user){res.json(user);}
+		    ).catch(function(err){
+		      res.send(err);
+		    });
+	    } );
 
 	app.route('/usersurveys')
-	    .get(usersurveys.read_usersurvey)
-	   // .put(usersurveys.update_usersurvey);
-	    .post(usersurveys.create_usersurvey);
-
+	    .get(function(req,res){
+	    	api.getAvailableSurveys(req).then(
+		      function(user){res.json(user);}
+		    ).catch(function(err){
+		      res.send(err);
+		    });
+	    }) 
+	   	.post(api.submitSurveyAnswers);
+	    
 };

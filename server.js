@@ -1,22 +1,15 @@
 var express = require('express'),
   app = express(),
   port = process.env.PORT || 3000,
-  mongoose = require('mongoose'),
   bodyParser = require('body-parser');
-
-  //load created models  here
-var User = require('./models/usermodel'), 
-  Survey = require('./models/surveymodel'),
-  UserSurvey = require('./models/usersurveymodel');
 
 
   
   
 // mongoose instance connection url connection
-mongoose.Promise = global.Promise;
-mongoose.connect('mongodb://localhost/usersurvey'); 
 
 
+//add middleware
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 

@@ -1,5 +1,6 @@
 'use strict';
 var mongoose = require('mongoose');
+
 var Schema = mongoose.Schema;
 var SurveyQuestionAnswesrSchema = new Schema({
       seqno:{
@@ -36,10 +37,10 @@ var SurveySchema = new Schema({
   },
   
   launch_time: {
-    type: Date 
+    type: Number 
   },
   due_time: {
-    type: Date 
+    type: Number 
   },
    frequency: {
       type: String,

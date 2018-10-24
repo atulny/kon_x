@@ -3,6 +3,8 @@
 
 var mongoose = require('mongoose'),
   Survey = mongoose.model('surveys');
+  var utils=require('../utils');
+
 /*
 Mongo does not have support for 'time' data type .. only datetime.
 
@@ -11,48 +13,48 @@ we will expect the input time in 'hh:nn am/pm' format and convert to a datetime 
 Mongo stores dates as ISO .. so no conversion required
 
 */
-exports.list_surveys = function(req, res) {
-  Survey.find({}, function(err, survey) {
-    if (err)
-      res.send(err);
-    res.json(survey);
-  });
-};
+ function parse_time(tm){
 
+  var re=/^(\d+)\:(\d+)\s*([ap]m)?$/
+  var arr=tm.match(re)
+  if (arr){
+    var h = +arr[1],m = +arr[2], ap=arr[3] ||""
+    if (ap.toLowerCase()=="pm" && h<12){
+        h=h+12
+    }
+        console.log(h,m,ap)    
 
-
-
-exports.create_survey = function(req, res) {
-  var survey_data=req.body
-  if (survey_data.questions && typeof(survey_data.questions)=='string'){
-
-    survey_data.questions=JSON.parse(survey_data.questions)
+    return new Date(2000,0,1,h,m,0)
   }
+ }
+
+exports.create_survey = function(survey_data) {
+ 
   if (survey_data.launch_time  && typeof(survey_data.launch_time)=='string'){
-    survey_data.launch_time = new Date( "1970/1/1 "+  survey_data.launch_time)
+    var date=parse_time(survey_data.launch_time)
+    var date0=utils.trunc_date(new Date(+date))
+    var offset=(+date) - (+date0)
+    console.log(survey_data.launch_time,offset,date,date0)    
+
+    survey_data.launch_time = offset
 
   }
   if (survey_data.due_time  && typeof(survey_data.due_time)=='string'){
-    survey_data.due_time = new Date( "1970/1/1 "+  survey_data.due_time)
+     var date=parse_time(survey_data.due_time)
+    var date0=utils.trunc_date(new Date(+date))
+    var offset=(+date) - (+date0)
+        console.log(survey_data.due_time,offset,date,date0)    
+
+    survey_data.due_time = offset
 
   }
  
   var new_survey = new Survey(survey_data);
-  new_survey.save(function(err, survey) {
-    if (err)
-      res.send(err);
-    res.json(survey);
-  });
+  return new_survey.save( );
 };
 
 
-exports.read_survey = function(req, res) {
-  Survey.findById(req.params.surveyId, function(err, survey) {
-    if (err)
-      res.send(err);
-    res.json(survey);
-  });
-};
+ 
 
 /**
 //Not required

@@ -3,9 +3,13 @@
 clone local
   - git clone https://github.com/atulny/kon_x.git
 
+
+cd kon_x
+
+
 - npm install
   - to install all dependancies
-cd kon_x
+
 
 ensure mongo db servr is running locally
  and has a collection usersurvey
